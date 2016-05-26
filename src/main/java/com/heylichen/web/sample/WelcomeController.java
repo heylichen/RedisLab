@@ -1,4 +1,4 @@
-package heylichen.web.sample;
+package com.heylichen.web.sample;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
