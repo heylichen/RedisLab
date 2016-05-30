@@ -45,7 +45,7 @@ public class RedisTemplateTest {
   public void performanceCompareWithPipeline() {
     //warming up
     logger.info("warming up");
-    int size = 10;
+    int size = 1;
     JSONArray dataList = newData(size);
     byPipeline(dataList, 30);
     mSetByPipeline(dataList, 30);
@@ -75,6 +75,7 @@ public class RedisTemplateTest {
 
   /**
    * test show that this is the best one
+   *
    * @param dataList
    * @param ttl
    */
@@ -159,4 +160,5 @@ public class RedisTemplateTest {
     }
     return result;
   }
+
 }

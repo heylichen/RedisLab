@@ -24,12 +24,25 @@
           p:usePool="true" p:hostName="${redis.server}" p:port="${redis.port}"/>
 
     <bean id="stringRedisSerializer"
-            class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+            class="org.springframework.data.redis.serializer.StringRedisSerializer" >
+    </bean>
+
+    <bean id="jsonRedisSerializer"
+          class="com.heylichen.commons.redis.serializer.FastJsonRedisSerializer" >
+        <constructor-arg index="0" value="java.lang.Object"/>
+    </bean>
+    <bean id="jackson2JsonRedisSerializer"
+          class="org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer" >
+        <constructor-arg index="0" value="java.lang.Object"/>
+    </bean>
 
     <!-- redis template definition -->
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
           p:connectionFactory-ref="jedisConnFactory"
           p:keySerializer-ref="stringRedisSerializer"
-          p:valueSerializer-ref="stringRedisSerializer" />
+          p:valueSerializer-ref="stringRedisSerializer"
+          p:hashKeySerializer-ref="jsonRedisSerializer"
+          p:hashValueSerializer-ref="jsonRedisSerializer"
+    />
 </beans>
